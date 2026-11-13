@@ -37,7 +37,7 @@ $('plan-form').addEventListener('input',update);
 $('plan-form').addEventListener('change',update);
 $('plan-form').addEventListener('submit',e=>e.preventDefault());
 $('prepare').addEventListener('click',()=>{if(!validate())return;$('request-text').value=planText();$('copy-status').textContent='';$('request-dialog').showModal();});
-$('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('request-text').value);$('copy-status').textContent='Расчёт скопирован. Откройте Telegram, вставьте текст в чат с ботом и отправьте.';}catch{$('request-text').focus();$('request-text').select();$('copy-status').textContent='Выделен весь текст. Нажмите Ctrl+C или выберите «Копировать».';}});
+$('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('request-text').value);$('copy-status').textContent='Расчёт скопирован. Откройте Telegram, вставьте текст в наш чат и отправьте.';}catch{$('request-text').focus();$('request-text').select();$('copy-status').textContent='Выделен весь текст. Нажмите Ctrl+C или выберите «Копировать».';}});
 $('download').addEventListener('click',()=>{if(!validate())return;const blob=new Blob(['\uFEFF'+planText()],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='kvadratny-vopros-plan.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('plan-status').textContent='Файл плана подготовлен для скачивания.';});
 $('privacy').addEventListener('click',()=>$('privacy-dialog').showModal());
 document.querySelectorAll('dialog .close').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
